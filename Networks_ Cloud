@@ -1,0 +1,115 @@
+#Keywords(cloud)
+
+
+
+1. TURN (Traversal Using Relays around NAT)
+
+A protocol used to allow media (audio, video) traversal through NAT (Network Address Translation) devices and firewalls.
+
+Often used in real-time communications (WebRTC).
+
+In AWS: If you’re hosting real-time apps or WebRTC services on AWS, you might deploy TURN servers to facilitate peer-to-peer connections when clients are behind restrictive networks.
+
+2. TAP (Network Tap or TAP Interface)
+
+TAP is a virtual network kernel device that operates at Layer 2 (Ethernet level).
+
+It allows software to capture or inject Ethernet frames, useful for virtual machines or containers to interact with a virtualized network.
+
+In AWS EC2: TAP devices can be used inside VMs or container hosts for custom networking setups or network packet inspection.
+
+3. OVS (Open vSwitch)
+
+Open vSwitch is a software-based virtual switch designed for managing and controlling virtualized network traffic.
+
+Used heavily in cloud environments for flexible, programmable switching within virtual networks.
+
+AWS uses its own virtual networking tech internally, but OVS is common in private clouds and some hybrid environments for software-defined networking (SDN).
+
+4. Overlay Network
+
+An overlay network is a virtual network built on top of another network.
+
+It allows creating isolated virtual networks over shared physical infrastructure, often using tunneling (VXLAN, GRE).
+
+In AWS, services like VPC (Virtual Private Cloud) provide isolated network overlays, and container orchestration tools (EKS with CNI plugins) may use overlay networks for pod communication.
+
+5. CNI (Container Network Interface)
+
+A specification and set of libraries/plugins for configuring networking for Linux containers.
+
+Kubernetes uses CNI plugins (like Calico, Flannel, AWS VPC CNI) to manage pod networking.
+
+In AWS EKS, the AWS VPC CNI plugin allows pods to have native IP addresses in your VPC.
+
+6. ZeroCopy
+
+ZeroCopy is a technique to reduce CPU overhead by avoiding unnecessary copying of data between user space and kernel space during network I/O.
+
+Improves performance in high-speed networking environments.
+
+AWS infrastructure and instances with enhanced networking support (ENA, Elastic Network Adapter) benefit from zero-copy optimizations to boost throughput.
+
+7. ARP (Address Resolution Protocol)
+
+ARP maps IP addresses to MAC (hardware) addresses on a local network segment.
+
+Critical for LAN communication.
+
+Within AWS VPCs and subnets, ARP is used internally in the virtualized network for IP-to-MAC resolution, though much of this is abstracted away from the user.
+
+8. Virtual Kernel
+
+Refers to a kernel or kernel module running in a virtualized or containerized environment.
+
+Examples: Linux kernel namespaces and virtualized network stacks used in containers or VMs.
+
+In AWS, your EC2 instances run real kernels, but containers on ECS or EKS use shared kernel namespaces (virtual kernel environments).
+
+9. Libvirt
+
+An open-source API and management tool for managing virtualization platforms like KVM, QEMU, Xen.
+
+Manages VMs, networking, storage, etc.
+
+AWS uses proprietary virtualization but similar concepts under the hood; libvirt is more common in private cloud setups or local virtualization.
+
+10. k6t (Kernel-based Virtual Tunnel)
+
+k6t is a lightweight, high-performance kernel virtual network tunnel, used for creating overlay networks (e.g., in Kubernetes).
+
+Allows encapsulation of network packets across nodes, often replacing VXLAN or GRE in some setups.
+
+Not a core AWS service but can be used in custom networking setups on AWS EC2 or Kubernetes clusters.
+
+11. eth (Ethernet interface)
+
+Standard naming for network interfaces on Linux (eth0, eth1, etc.).
+
+In AWS EC2 instances, your virtual NICs show up as ethX interfaces.
+
+These interfaces connect the VM or container to the virtual network (VPC, subnet).
+
+12. DHCP (Dynamic Host Configuration Protocol)
+
+Protocol to automatically assign IP addresses and network configurations to devices.
+
+In AWS VPC, instances usually get IP addresses assigned via DHCP managed by AWS internally.
+
+You don’t directly manage DHCP servers in AWS VPCs, but the underlying process is handled by AWS.
+
+Summary for AWS Context:
+
+Networking in AWS EC2 instances revolves around virtual Ethernet (eth) interfaces, where IP is assigned automatically via DHCP.
+
+VPCs create isolated virtual networks (overlay-like), where ARP and DHCP function transparently.
+
+Container networking in EKS/ECS uses CNI plugins to manage pod IPs and communication.
+
+Advanced networking tools like OVS, k6t, and virtual kernels are more often seen in private clouds or custom Kubernetes clusters you run on AWS EC2.
+
+ZeroCopy techniques and enhanced networking improve performance on certain instance types.
+
+TURN servers are needed when running real-time communications apps on AWS behind NAT/firewalls.
+
+Libvirt is not native to AWS but common in self-hosted virtualization environments.
